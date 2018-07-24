@@ -27,8 +27,10 @@ ADD https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz steam
 RUN tar --no-same-owner -zxvf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz
 WORKDIR /
 
-# Fix for missing library
+# Initialize steamcmd
 RUN /steamcmd/steamcmd.sh +exit
+
+# Fix for missing library
 RUN mkdir -p ~/.steam/sdk32
 RUN ln -s /steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 
