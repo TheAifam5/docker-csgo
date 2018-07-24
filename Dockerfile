@@ -37,6 +37,9 @@ RUN ln -s /steamcmd/linux32/steamclient.so ~/.steam/sdk32/steamclient.so
 # Add start script
 ADD start.sh /start.sh
 
+# Make start.sh executable
+RUN chmod +x /start.sh
+
 WORKDIR /data
 VOLUME [ "/data" ]
 ENTRYPOINT [ "/start.sh" ]
