@@ -1,15 +1,17 @@
 #!/bin/bash
 
+DATA_PATH="/data"
+
 function update_cfg()
 {
-    sed -i -r "s/^($1)\s+(.+)$/\1 \"$2\"/" /tmp/server.cfg
+    sed -i -r "s/^($1)\s+(.+)$/\1 \"$2\"/" "$DATA_PATH/csgo/cfg/server.cfg"
 }
 
 # Install CSGO when is not installed
 if [ ! -f "./srcds_run" ] || [ -f "./.force_update" ]
 then
-    /steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType linux +login anonymous +force_install_dir ./ +app_update 740 validate +quit
-    rc = $?
+    /steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType linux +login anonymous +force_install_dir $DATA_PATH +app_update 740 validate +quit
+    rc=$?
     # Check the exit code of steamcmd
     if [[ $rc != 0 ]]
     then
@@ -20,7 +22,7 @@ then
     # If the configuration of the server is not present, create new one
     if [ ! -f "./csgo/cfg/server.cfg"]
     then
-        cat << SERVERCFG > ./csgo/cfg/server.cfg
+        cat << SERVERCFG > $DATA_PATH/csgo/cfg/server.cfg
 hostname "$SERVER_HOSTNAME"
 rcon_password "$SERVER_RCON_PASSWORD"
 sv_password "$SERVER_PASSWORD"
