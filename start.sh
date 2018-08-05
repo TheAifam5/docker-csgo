@@ -22,7 +22,7 @@ then
     # If the configuration of the server is not present, create new one
     if [ ! -f "./csgo/cfg/server.cfg"]
     then
-        cat << SERVERCFG > ./csgo/cfg/server.cfg
+        cat <<SERVERCFG > ./csgo/cfg/server.cfg
 hostname "$SERVER_HOSTNAME"
 rcon_password "$SERVER_RCON_PASSWORD"
 sv_password "$SERVER_PASSWORD"
@@ -36,12 +36,12 @@ SERVERCFG
 fi
 
 # Make backup of the configuration
-cp ./csgo/cfg/server.cfg './csgo/cfg/server-`date --iso`.cfg.bak'
+cp ./csgo/cfg/server.cfg ./csgo/cfg/server-`date --iso`.cfg.bak
 
 # Update configuration
-update_cfg 'hostname' $SERVER_HOSTNAME
-update_cfg 'rcon_password' $SERVER_RCON_PASSWORD
-update_cfg 'sv_password' $SERVER_PASSWORD
+update_cfg 'hostname' "$SERVER_HOSTNAME"
+update_cfg 'rcon_password' "$SERVER_RCON_PASSWORD"
+update_cfg 'sv_password' "$SERVER_PASSWORD"
 
 # Start the server
 ./srcds_run \
