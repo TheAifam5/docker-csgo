@@ -49,6 +49,8 @@ update_cfg 'sv_password' "$SERVER_PASSWORD"
     -console \
     -usercon \
     -game csgo \
+    -secure \
+    -autoupdate \
     -tickrate $SERVER_TICKRATE \
     -port $SERVER_PORT \
     -maxplayers_override $SERVER_MAX_PLAYERS \
