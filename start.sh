@@ -29,6 +29,7 @@ sv_password "$SERVER_PASSWORD"
 sv_lan 0
 sv_cheats 0
 SERVERCFG
+        chmod 755 ./csgo/cfg/server.cfg
     fi
 
     # If everything ok, delete the file
